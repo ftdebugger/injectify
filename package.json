@@ -1,0 +1,11 @@
+{
+  "name": "injectify",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Evgeny Shpilevsky",
+  "dependencies": {
+    "handlebars": "~2.0.0",
+    "through": "~2.3.0"
+  }
+}
