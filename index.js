@@ -80,7 +80,7 @@ function injectify(file) {
         },
         function () {
             var compiled = "// hbsfy compiled Handlebars template\n";
-            compiled += "var Handlebars = require('hbsfy/runtime');\n";
+            compiled += "var Handlebars = require('injectify/runtime');\n";
             compiled += "module.exports = Handlebars.template(" + compile(parse(buffer)) + ");\n";
 
             this.queue(compiled);
