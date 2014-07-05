@@ -11,34 +11,56 @@ var extensions = {
     handlebars: 1
 };
 
-var helpers = {
-    "view": [0]
-};
+var helpers = {};
+
+function processNode(node) {
+    if (node.eligibleHelper) {
+        var helperName = node.id.string;
+
+        if (helpers[helperName]) {
+            helpers[helperName].forEach(function (paramIndex) {
+                var param = node.params[paramIndex];
+
+                if (param) {
+                    param.type = 'INTEGER';
+                    param.integer = 'require("' + param.string + '")';
+                }
+            });
+        }
+    }
+}
+
+function walkPairs(pairs) {
+    pairs.forEach(function (pair) {
+        processNode(pair[1]);
+        walk(pair[1]);
+    });
+
+    return pairs;
+}
+
+function walkNodes(nodes) {
+
+    nodes.forEach(function (node) {
+        processNode(node);
+        walk(node);
+    });
+
+    return nodes;
+}
 
 /**
  * @param {Object} ast
  * @returns {Object}
  */
 function walk(ast) {
-    ast.statements.forEach(function (node) {
-        if (node.eligibleHelper) {
-            var helperName = node.sexpr.id.string;
-            if (helpers[helperName]) {
-                helpers[helperName].forEach(function (paramIndex) {
-                    var param = node.sexpr.params[paramIndex];
+    if (ast.statements) {
+        ast.statements = walkNodes(ast.statements);
+    }
 
-                    if (param) {
-                        param.type = 'INTEGER';
-                        param.integer = 'require("' + param.string + '")';
-                    }
-                });
-            }
-        }
-
-        if (node.statements) {
-            walk(ast);
-        }
-    });
+    if (ast.hash && ast.hash.pairs) {
+        ast.hash.pairs = walkPairs(ast.hash.pairs);
+    }
 
     return ast;
 }
@@ -79,8 +101,7 @@ function injectify(file) {
             buffer += chunk.toString();
         },
         function () {
-            var compiled = "// hbsfy compiled Handlebars template\n";
-            compiled += "var Handlebars = require('injectify/runtime');\n";
+            var compiled = "var Handlebars = require('handlebars/runtime')['default'];\n";
             compiled += "module.exports = Handlebars.template(" + compile(parse(buffer)) + ");\n";
 
             this.queue(compiled);
