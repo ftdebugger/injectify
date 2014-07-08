@@ -20,7 +20,7 @@ Usage
 Use it as Browserify transform module with `-t`:
 
 ```
-browserify -t hbsfy main.js > bundle.js
+browserify -t injectify main.js > bundle.js
 ```
 
 If you prefer `gulp`:
@@ -41,7 +41,7 @@ If you prefer `gulp`:
     });
 ```
 
-In file `./src/index.js` require helper injectify helper:
+In file `./src/index.js` require injectify `require` helper:
 
 ```js
 require("injectify/require");
