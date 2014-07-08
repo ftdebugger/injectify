@@ -72,3 +72,9 @@ Relative require {{require "../utils/strange-module"}}
 
 or globally defined {{require "my-utils"}}
 ```
+
+Examples of usage
+-----------------
+
+ * [Include helper](https://github.com/ftdebugger/injectify-include) - allow include templates like partials, but with browserify
+ * [View helper](https://github.com/ftdebugger/injectify-view) - allow render marionette view direct to template
