@@ -1,0 +1,7 @@
+language: node_js
+before_script:
+  - sudo $(which npm) link
+  - npm instal handlebars@1
+node_js:
+  - "0.8"
+  - "0.10"

@@ -7,10 +7,7 @@
     var gulp = require("gulp"),
         browserify = require("browserify"),
         source = require("vinyl-source-stream"),
-        streamify = require("gulp-streamify"),
         karma = require("gulp-karma");
-
-    require("./inject");
 
     gulp.task('spec', function () {
         var bundleStream = browserify('./spec/index.js')

@@ -1,5 +1,6 @@
 /*jshint node: true*/
 
+//noinspection BadExpressionStatementJS
 "use strict";
 
 var through = require('through'),
@@ -157,5 +158,6 @@ injectify.addHelper = function (name, indexes) {
     return injectify;
 };
 
-module.exports = injectify;
+injectify.addHelper('require', [0]);
 
+module.exports = injectify;
