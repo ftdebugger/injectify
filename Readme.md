@@ -50,8 +50,6 @@ require("injectify/require");
 Now you can use `require` helper in your templates:
 
 ```handlebars
-<h1>Example</h1>
-
 Simple require some module with string export: {{require "../string-module"}}
 
 Pass require result as param to another helper: {{formatUser (require "../user-module")}}
