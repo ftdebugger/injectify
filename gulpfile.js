@@ -13,7 +13,9 @@
     require("./inject");
 
     gulp.task('spec', function () {
-        var bundleStream = browserify('./spec/index.js').bundle();
+        var bundleStream = browserify('./spec/index.js')
+            .transform(require("./index"))
+            .bundle();
 
         return bundleStream
             .pipe(source('spec.js'))

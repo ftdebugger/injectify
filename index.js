@@ -62,6 +62,18 @@ function walk(ast) {
         ast.hash.pairs = walkPairs(ast.hash.pairs);
     }
 
+    if (ast.params) {
+        ast.params = walkNodes(ast.params);
+    }
+
+    if (ast.mustache) {
+        ast.mustache = walk(ast.mustache);
+    }
+
+    if (ast.program) {
+        ast.program = walk(ast.program);
+    }
+
     return ast;
 }
 
