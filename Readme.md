@@ -50,11 +50,17 @@ require("injectify/require");
 Now you can use `require` helper in your templates:
 
 ```handlebars
-Simple require some module with string export: {{require "../string-module"}}
+Simple require some module with string export: 
 
-Pass require result as param to another helper: {{formatUser (require "../user-module")}}
+{{require "../string-module"}}
 
-Pass require result as hash param to another helper: {{formatUser user=(require "../user-module")}}
+Pass require result as param to another helper: 
+
+{{formatUser (require "../user-module")}}
+
+Pass require result as hash param to another helper: 
+
+{{formatUser user=(require "../user-module")}}
 ```
 
 `require` helper works like original `browserify`. You can require modules relative to template file or
@@ -62,5 +68,7 @@ node_modules directory
 
 
 ```handlebars
-Relative require {{require "../utils/strange-module"}} or globally defined {{require "my-utils"}}
+Relative require {{require "../utils/strange-module"}} 
+
+or globally defined {{require "my-utils"}}
 ```
