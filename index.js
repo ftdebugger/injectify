@@ -76,7 +76,7 @@ function walk(ast) {
     }
 
     if (ast.inverse) {
-        ast.program = walk(ast.inverse);
+        ast.inverse = walk(ast.inverse);
     }
 
     return ast;
