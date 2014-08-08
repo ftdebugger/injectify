@@ -75,6 +75,10 @@ function walk(ast) {
         ast.program = walk(ast.program);
     }
 
+    if (ast.inverse) {
+        ast.program = walk(ast.inverse);
+    }
+
     return ast;
 }
 

@@ -15,6 +15,11 @@ describe("injectify helper", function () {
         expect(template({flag: true})).toBe("test injectify with level-2 string module\n");
     });
 
+    it("work with level-2 injection (else block)", function () {
+        var template = require("./fixture/tpl/level-2.hbs");
+        expect(template({flag: false})).toBe("test injectify with level-2 string module\n");
+    });
+
     it("work with position injection", function () {
         var template = require("./fixture/tpl/position.hbs");
         expect(template()).toBe("test injectify with position !string module!\n");
