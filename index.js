@@ -118,10 +118,16 @@ function injectify(file) {
             buffer += chunk.toString();
         },
         function () {
-            var compiled = "var Handlebars = require('handlebars/runtime')['default'];\n";
-            compiled += "module.exports = Handlebars.template(" + compile(parse(buffer)) + ");\n";
+            if (buffer.indexOf('/* prevent circular */') === 0) {
+                this.queue(buffer);
+            }
+            else {
+                var compiled = "/* prevent circular */var Handlebars = require('handlebars/runtime')['default'];\n";
+                compiled += "module.exports = Handlebars.template(" + compile(parse(buffer)) + ");\n";
 
-            this.queue(compiled);
+                this.queue(compiled);
+            }
+
             this.queue(null);
         });
 }
