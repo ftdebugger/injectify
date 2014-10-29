@@ -23,8 +23,8 @@ function processNode(node) {
                 var param = node.params[paramIndex];
 
                 if (param) {
-                    param.type = 'INTEGER';
-                    param.integer = 'require("' + param.string + '")';
+                    param.type = 'NUMBER';
+                    param.number = 'require("' + param.string + '")';
                 }
             });
         }
