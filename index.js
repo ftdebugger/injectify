@@ -14,6 +14,15 @@ var extensions = {
 
 var helpers = {};
 
+Handlebars.Compiler.prototype.INJECTIFY_STRING = function (param) {
+    this.opcode('pushLiteral', 'require("' + param.string + '")');
+};
+
+Handlebars.Compiler.prototype.INJECTIFY_ID = function (param) {
+    console.warn("injectify over ID is not supported yet");
+    this.ID(param);
+};
+
 function processNode(node) {
     if (node.eligibleHelper) {
         var helperName = node.id.string;
@@ -23,8 +32,12 @@ function processNode(node) {
                 var param = node.params[paramIndex];
 
                 if (param) {
-                    param.type = 'NUMBER';
-                    param.number = 'require("' + param.string + '")';
+                    if (param.type === 'STRING') {
+                        param.type = 'INJECTIFY_STRING';
+                    }
+                    else if (param.type === 'ID') {
+                        param.type = 'INJECTIFY_ID';
+                    }
                 }
             });
         }

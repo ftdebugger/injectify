@@ -1,3 +1,6 @@
+//noinspection BadExpressionStatementJS
+'use strict';
+
 require("../require");
 require("./fixture/js/position-helper");
 require("./fixture/js/block-helper");
@@ -33,6 +36,16 @@ describe("injectify helper", function () {
     it("work with position block helper", function () {
         var template = require("./fixture/tpl/block.hbs");
         expect(template()).toBe("test injectify with block !block=string module!\n");
+    });
+
+    it('replace to require only strings', function () {
+        var template = require("./fixture/tpl/injectify-variable.hbs");
+        var options = {
+            pathVariable: "../js/string"
+        };
+
+        //expect(template(options)).toBe("test injectify with hash !helper=string module!\n"); // this is right behaviour
+        expect(template(options)).toBe("test injectify with hash !helper=../js/string!\n", 'is not failed');
     });
 
 });

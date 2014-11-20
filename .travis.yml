@@ -3,3 +3,4 @@ before_script:
   - sudo $(which npm) link
 node_js:
   - "0.10"
+  - "0.11"
