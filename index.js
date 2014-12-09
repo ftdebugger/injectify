@@ -81,6 +81,7 @@ function walk(ast) {
     }
 
     if (ast.mustache) {
+        processNode(ast.mustache);
         ast.mustache = walk(ast.mustache);
     }
 

@@ -8,6 +8,11 @@ require("./fixture/js/hash-helper");
 
 describe("injectify helper", function () {
 
+    it("work as block helper", function () {
+        var template = require("./fixture/tpl/block.hbs");
+        expect(template()).toBe("block version string module\n");
+    });
+    
     it("work with level-1 injection", function () {
         var template = require("./fixture/tpl/level-1.hbs");
         expect(template()).toBe("test injectify with string module\n");
@@ -33,8 +38,8 @@ describe("injectify helper", function () {
         expect(template()).toBe("test injectify with hash !helper=string module!\n");
     });
 
-    it("work with position block helper", function () {
-        var template = require("./fixture/tpl/block.hbs");
+    it("work with position in block helper", function () {
+        var template = require("./fixture/tpl/in-block.hbs");
         expect(template()).toBe("test injectify with block !block=string module!\n");
     });
 
