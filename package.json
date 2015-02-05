@@ -10,16 +10,14 @@
     "handlebars": "~2.0.0"
   },
   "devDependencies": {
-    "browserify": "^4.2.0",
-    "gulp": "^3.8.5",
-    "gulp-karma": "0.0.4",
-    "karma": "^0.12.16",
-    "karma-jasmine": "^0.1.5",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "vinyl-source-stream": "^0.1.1"
+    "gulp": "~3.8.5",
+    "karma": "~0.12.16",
+    "karma-browserify": "~3.0.1",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.4"
   },
   "scripts": {
-    "test": "gulp karma"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",

@@ -31,17 +31,17 @@ If you prefer `gulp`:
         source = require("vinyl-source-stream"),
         
     gulp.task('js', function () {
-        var bundleStream = browserify('./src/index.js')
+        var bundleStream = browserify('./src/index.spec.js')
             .transform(require("injectify"))
             .bundle();
 
         return bundleStream
-            .pipe(source('index.js'))
+            .pipe(source('index.spec.js'))
             .pipe(gulp.dest('dist'));
     });
 ```
 
-In file `./src/index.js` require injectify `require` helper:
+In file `./src/index.spec.js` require injectify `require` helper:
 
 ```js
 require("injectify/require");

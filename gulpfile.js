@@ -5,31 +5,26 @@
     "use strict";
 
     var gulp = require("gulp"),
-        browserify = require("browserify"),
-        source = require("vinyl-source-stream"),
-        karma = require("gulp-karma");
+        karma = require("karma").server;
 
-    gulp.task('spec', function () {
-        var bundleStream = browserify('./spec/index.js')
-            .transform(require("./index"))
-            .bundle();
+    require("./");
 
-        return bundleStream
-            .pipe(source('spec.js'))
-            .pipe(gulp.dest('dist'));
+    gulp.task('karma', function (done) {
+        karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            autoWatch: true,
+            singleRun: false
+        }, done);
     });
 
-    gulp.task('karma', ['spec'], function () {
-        gulp.src('dist/spec.js').pipe(karma({
-            configFile: 'karma.conf.js',
-            action: 'run'
-        }));
+    gulp.task('test', function (done) {
+        karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            autoWatch: false,
+            singleRun: true
+        }, done);
     });
 
-    gulp.task('watch', function () {
-        gulp.watch(['spec/**'], ['karma']);
-    });
-
-    gulp.task('default', ['karma', 'watch']);
+    gulp.task('default', ['karma']);
 
 })();
