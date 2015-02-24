@@ -1,9 +1,6 @@
-(function () {
-    //noinspection BadExpressionStatementJS
-    "use strict";
+//noinspection BadExpressionStatementJS
+"use strict";
 
-    require("./runtime").registerHelper("require", function (instance, options) {
-        return instance;
-    });
-
-})();
+require("./runtime").registerHelper("require", function (instance) {
+    return instance;
+});

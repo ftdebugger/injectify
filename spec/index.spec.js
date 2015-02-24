@@ -12,7 +12,7 @@ describe("injectify helper", function () {
         var template = require("./fixture/tpl/block.hbs");
         expect(template()).toBe("block version string module\n");
     });
-    
+
     it("work with level-1 injection", function () {
         var template = require("./fixture/tpl/level-1.hbs");
         expect(template()).toBe("test injectify with string module\n");
