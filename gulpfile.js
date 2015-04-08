@@ -10,7 +10,7 @@
         karma = require("gulp-karma");
 
     gulp.task('spec', function () {
-        var bundleStream = browserify('./spec/index.js')
+        var bundleStream = browserify('./spec/index.spec.js')
             .transform(require("./index"))
             .bundle();
 
