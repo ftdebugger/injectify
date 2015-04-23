@@ -1,6 +1,6 @@
 {
   "name": "injectify",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Add require helper to handlebars for browserify",
   "main": "index.js",
   "author": "Evgeny Shpilevsky",
