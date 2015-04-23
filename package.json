@@ -14,7 +14,8 @@
     "karma": "~0.12.16",
     "karma-browserify": "~3.0.1",
     "karma-jasmine": "~0.1.5",
-    "karma-phantomjs-launcher": "~0.1.4"
+    "karma-phantomjs-launcher": "~0.1.4",
+    "lodash": "^3.7.0"
   },
   "scripts": {
     "test": "gulp test"

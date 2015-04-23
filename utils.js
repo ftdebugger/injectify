@@ -12,8 +12,13 @@
         }
     };
 
-    module.exports = {
+    var utils = {
 
+        /**
+         * @param {object} context
+         * @param {[]} args
+         * @returns {{module: function, options: {}, name: string, hash: {}, parentView: object}}
+         */
         extractArguments: function (context, args) {
             var options = args.pop(),
                 module = args.shift(),
@@ -53,14 +58,35 @@
             }
 
             return {
-                module: module,
+                module: utils.extractModule(module),
                 options: options,
                 name: name,
                 hash: hash,
                 parentView: view
             };
+        },
+
+        /**
+         * It can be es6 module with no default export,
+         * so we need to extract it
+         *
+         * @param moduleDefinition
+         * @returns {*}
+         */
+        extractModule: function (moduleDefinition) {
+            if (moduleDefinition && typeof moduleDefinition === 'object' && moduleDefinition.__esModule === true) {
+                var moduleExports = _.toArray(_.omit(moduleDefinition, '__esModule'));
+
+                if (moduleExports.length === 1) {
+                    return moduleExports[0];
+                }
+            }
+
+            return moduleDefinition;
         }
 
     };
+
+    module.exports = utils;
 
 })();

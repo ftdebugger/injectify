@@ -53,4 +53,9 @@ describe("injectify helper", function () {
         expect(template(options)).toBe("test injectify with hash !helper=../js/string!\n", 'is not failed');
     });
 
+    it("work with es6 module definition without default export", function () {
+        var template = require("./fixture/tpl/es6-module.hbs");
+        expect(template()).toBe("es6 version work\n");
+    });
+
 });

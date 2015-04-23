@@ -1,6 +1,8 @@
 //noinspection BadExpressionStatementJS
 "use strict";
 
+var utils = require('./utils');
+
 require("./runtime").registerHelper("require", function (instance) {
-    return instance;
+    return utils.extractModule(instance);
 });
