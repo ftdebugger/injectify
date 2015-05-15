@@ -1,12 +1,12 @@
 /*jshint node: true*/
 
 //noinspection BadExpressionStatementJS
-"use strict";
+'use strict';
 
 require('./lib/compiler');
 
 var defaultTransform = require('./lib/transform/default'),
-    injectify = require('./lib/helper');
+    injectify = require('./lib/browserifyTransform');
 
 /**
  * @param {{extensions: String[]}} opts
