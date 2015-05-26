@@ -43,4 +43,9 @@ describe("injectify helper", function () {
         expect(template()).toBe("test injectify with block !block=string module!\n");
     });
 
+    it("work with hash in block helper", function () {
+        var template = require("./fixture/tpl/hash-in-block.hbs");
+        expect(template()).toBe("test injectify with hash block !helper=string module!\n");
+    });
+
 });
