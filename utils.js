@@ -87,7 +87,7 @@
             var view;
 
             if (hash.view) {
-                view = options.hash.view;
+                view = hash.view;
             } else {
                 view = getView(context);
 
