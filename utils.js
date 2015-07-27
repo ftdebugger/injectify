@@ -2,6 +2,10 @@
     //noinspection BadExpressionStatementJS
     'use strict';
 
+    /**
+     * @param {{view: Backbone.View, __parent__: *}} context
+     * @returns {*}
+     */
     var getView = function (context) {
         if (context) {
             while (context && !context.view && context.__parent__) {
@@ -22,7 +26,7 @@
         extractArguments: function (context, args) {
             var options = args.pop(),
                 module = args.shift(),
-                name, hash, view;
+                name, hash;
 
             if (args.length && typeof args[0] == "string") {
                 name = args.shift();
@@ -43,26 +47,12 @@
                 name = _.uniqueId('injectify');
             }
 
-            if (hash.view) {
-                view = hash.view;
-            }
-            else {
-                view = getView(context);
-
-                if (!view && options.data && options.data.root) {
-                    view = getView(options.data.root)
-                }
-                if (!view && options.data && options.data._parent) {
-                    view = getView(options.data._parent.root)
-                }
-            }
-
             return {
                 module: utils.extractModule(module),
                 options: options,
                 name: name,
                 hash: hash,
-                parentView: view
+                parentView: this.extractView(context, hash, options)
             };
         },
 
@@ -83,6 +73,33 @@
             }
 
             return moduleDefinition;
+        },
+
+        /**
+         * Extract view
+         *
+         * @param context
+         * @param hash
+         * @param options
+         * @returns {*}
+         */
+        extractView: function (context, hash, options) {
+            var view;
+
+            if (hash.view) {
+                view = options.hash.view;
+            } else {
+                view = getView(context);
+
+                if (!view && options.data && options.data.root) {
+                    view = getView(options.data.root)
+                }
+                if (!view && options.data && options.data._parent) {
+                    view = getView(options.data._parent.root)
+                }
+            }
+
+            return view;
         }
 
     };

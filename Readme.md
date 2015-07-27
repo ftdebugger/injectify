@@ -3,7 +3,7 @@ Injectify [![Build Status](https://travis-ci.org/ftdebugger/injectify.svg?branch
 
 Inspired by [hbsfy](https://github.com/epeli/node-hbsfy) and based on it source code.
 
-Transform handlebars AST and add support of `require` helper for browserify automatic injection;
+Transform handlebars AST and add support of `require` helper for browserify/webpack automatic injection;
 
 
 Install
@@ -14,8 +14,8 @@ npm install --save-dev injectify
 ```
 
 
-Usage
------
+Use with browserify
+-------------------
 
 Use it as Browserify transform module with `-t`:
 
@@ -31,17 +31,35 @@ If you prefer `gulp`:
         source = require("vinyl-source-stream"),
         
     gulp.task('js', function () {
-        var bundleStream = browserify('./src/index.spec.js')
+        var bundleStream = browserify('./src/main.js')
             .transform(require("injectify"))
             .bundle();
 
         return bundleStream
-            .pipe(source('index.spec.js'))
+            .pipe(source('main.js'))
             .pipe(gulp.dest('dist'));
     });
 ```
 
-In file `./src/index.spec.js` require injectify `require` helper:
+Use with webpack
+----------------
+
+Configure webpack
+
+```js
+{
+    "module": {
+        "loaders": [
+            {"test": /\.hbs/, "loader": "injectify/lib/webpackLoader.js"}
+        ]
+    }
+}
+```json
+
+Load helper
+-----------
+
+In file `./src/main.js` require injectify `require` helper:
 
 ```js
 require("injectify/require");
