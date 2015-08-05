@@ -1,49 +1,41 @@
-/*jshint node: true*/
+'use strict';
 
-(function () {
-    //noinspection BadExpressionStatementJS
-    "use strict";
+var gulp = require('gulp'),
+    karma = require('karma').server;
 
-    var gulp = require("gulp"),
-        karma = require("karma").server;
+var watch = function (configPath, done) {
+    karma.start({
+        configFile: configPath,
+        autoWatch: true,
+        singleRun: false
+    }, done);
+};
 
-    require("./");
+var test = function (configPath, done) {
+    karma.start({
+        configFile: configPath,
+        autoWatch: false,
+        singleRun: true
+    }, done);
+};
 
-    var watch = function (configPath, done) {
-        karma.start({
-            configFile: configPath,
-            autoWatch: true,
-            singleRun: false
-        }, done);
-    };
+gulp.task('karma:browserify', function (done) {
+    watch(__dirname + '/karma.conf.js', done);
+});
 
-    var test = function (configPath, done) {
-        karma.start({
-            configFile: configPath,
-            autoWatch: false,
-            singleRun: true
-        }, done);
-    };
+gulp.task('karma:webpack', function (done) {
+    watch(__dirname + '/webpack.karma.conf.js', done);
+});
 
-    gulp.task('karma:browserify', function (done) {
-        watch(__dirname + '/karma.conf.js', done);
-    });
+gulp.task('test:browserify', function (done) {
+    test(__dirname + '/karma.conf.js', done);
+});
 
-    gulp.task('karma:webpack', function (done) {
-        watch(__dirname + '/webpack.karma.conf.js', done);
-    });
+gulp.task('test:webpack', function (done) {
+    test(__dirname + '/webpack.karma.conf.js', done);
+});
 
-    gulp.task('test:browserify', function (done) {
-        test(__dirname + '/karma.conf.js', done);
-    });
+gulp.task('karma', ['karma:browserify', 'karma:webpack']);
+gulp.task('test', ['test:browserify', 'test:webpack']);
 
-    gulp.task('test:webpack', function (done) {
-        test(__dirname + '/webpack.karma.conf.js', done);
-    });
-
-    gulp.task('karma', ['karma:browserify', 'karma:webpack']);
-    gulp.task('test', ['test:browserify', 'test:webpack']);
-
-    gulp.task('default', ['karma']);
-
-})();
+gulp.task('default', ['karma']);

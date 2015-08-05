@@ -4,15 +4,15 @@ module.exports = {
     output: {
         // Make sure to use [name] or [id] in output.filename
         //  when using multiple entry points
-        filename: "[name].bundle.js",
-        chunkFilename: "[id].bundle.js",
-        path: __dirname + "/dist"
+        filename: '[name].bundle.js',
+        chunkFilename: '[id].bundle.js',
+        path: __dirname + '/dist'
     },
     devtool: 'inline-source-map',
 
     module: {
         loaders: [
-            {test: /\.hbs/, loader: __dirname + "/lib/webpackLoader.js"}
+            {test: /\.hbs/, loader: __dirname + '/index.js'}
         ]
     }
 };

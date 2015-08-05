@@ -1,3 +1,3 @@
-require("../../../runtime").registerHelper("hashHelper", function (options) {
-    return '!helper=' + options.hash.helper + "!";
+require('../../../runtime').registerHelper('hashHelper', function (options) {
+    return '!helper=' + options.hash.helper + '!';
 });

@@ -1,3 +1,3 @@
-require("../../../runtime").registerHelper("positionHelper", function (helper, options) {
-    return '!' + helper + "!";
+require('../../../runtime').registerHelper('positionHelper', function (helper) {
+    return '!' + helper + '!';
 });

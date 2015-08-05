@@ -1,44 +1,30 @@
 /*jshint node: true*/
 
-//noinspection BadExpressionStatementJS
 'use strict';
 
-require('./lib/compiler');
-
-var defaultTransform = require('./lib/transform/default'),
-    injectify = require('./lib/browserifyTransform');
+var requireSecondArgumentTransform = require('./lib/transform/requireSecondArgumentTransform'),
+    browserifyTransform = require('./lib/browserifyTransform'),
+    webpackLoader = require('./lib/webpackLoader');
 
 /**
- * @param {{extensions: String[]}} opts
- * @returns {injectify}
+ * @param {string} data
+ * @returns {*}
  */
-injectify.configure = function (opts) {
-    if (opts.extensions) {
-        this.setExtensions(opts.extensions);
+var universalLoader = function (data) {
+    if (this && this.cacheable) {
+        return webpackLoader.call(this, data);
+    } else {
+        return browserifyTransform.call(this, data);
     }
-
-    return injectify;
-};
-
-/**
- * @param {String[]} newExtensions
- * @returns {injectify}
- */
-injectify.setExtensions = function (newExtensions) {
-    newExtensions.forEach(function (ext) {
-        injectify.extensions[ext] = 1;
-    });
-
-    return injectify;
 };
 
 /**
  * @param {string} helperName
  */
-injectify.createTransform = function (helperName) {
-    defaultTransform.createTransform(helperName);
+universalLoader.createTransform = function (helperName) {
+    requireSecondArgumentTransform.createTransform(helperName);
 };
 
-defaultTransform.createTransform('require');
+requireSecondArgumentTransform.createTransform('require');
 
-module.exports = injectify;
+module.exports = universalLoader;
