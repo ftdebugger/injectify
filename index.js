@@ -4,7 +4,8 @@
 
 var requireSecondArgumentTransform = require('./lib/transform/requireSecondArgumentTransform'),
     browserifyTransform = require('./lib/browserifyTransform'),
-    webpackLoader = require('./lib/webpackLoader');
+    webpackLoader = require('./lib/webpackLoader'),
+    injectify = require('./lib/injectify');
 
 /**
  * @param {string} data
@@ -23,6 +24,13 @@ var universalLoader = function (data) {
  */
 universalLoader.createTransform = function (helperName) {
     requireSecondArgumentTransform.createTransform(helperName);
+};
+
+/**
+ * @param {function} plugin
+ */
+universalLoader.installPlugin = function (plugin) {
+    injectify.installPlugin(plugin);
 };
 
 requireSecondArgumentTransform.createTransform('require');

@@ -50,7 +50,7 @@ Configure webpack
 {
     "module": {
         "loaders": [
-            {"test": /\.hbs/, "loader": "injectify/lib/webpackLoader.js"}
+            {"test": /\.hbs/, "loader": "injectify"}
         ]
     }
 }
