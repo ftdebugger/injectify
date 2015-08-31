@@ -1,13 +1,13 @@
 'use strict';
 
 /**
- * @param {{view: Backbone.View, __parent__: *}} context
+ * @param {{view: Backbone.View, _parent: *}} context
  * @returns {*}
  */
 var getView = function (context) {
     if (context) {
-        while (context && !context.view && context.__parent__) {
-            context = context.__parent__;
+        while (context && !context.view && context._parent) {
+            context = context._parent;
         }
 
         return context ? context.view : null;
@@ -88,11 +88,12 @@ var utils = {
         } else {
             view = getView(context);
 
-            if (!view && options.data && options.data.root) {
-                view = getView(options.data.root)
-            }
-            if (!view && options.data && options.data._parent) {
-                view = getView(options.data._parent.root)
+            if (!view && options.data) {
+                view = getView(options.data)
+
+                if (!view && options.data.root) {
+                    view = getView(options.data.root)
+                }
             }
         }
 
