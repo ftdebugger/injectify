@@ -54,7 +54,7 @@ Configure webpack
         ]
     }
 }
-```json
+```
 
 Load helper
 -----------
