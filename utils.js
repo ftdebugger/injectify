@@ -89,7 +89,7 @@ var utils = {
             view = getView(context);
 
             if (!view && options.data) {
-                view = getView(options.data)
+                view = getView(options.data);
 
                 if (!view && options.data.root) {
                     view = getView(options.data.root)
