@@ -35,7 +35,7 @@ describe('injectify helper', function () {
 
     it('work with hash injection', function () {
         var template = require('./fixture/tpl/hash.hbs');
-        expect(template()).toBe('test injectify with hash !helper=string module!\n');
+        expect(template()).toBe('test injectify with hash !helper&#x3D;string module!\n');
     });
 
     it('work with position in block helper', function () {
@@ -55,7 +55,7 @@ describe('injectify helper', function () {
         };
 
         //expect(template(options)).toBe('test injectify with hash !helper=string module!\n'); // this is right behaviour
-        expect(template(options)).toBe('test injectify with hash !helper=../js/string!\n', 'is not failed');
+        expect(template(options)).toBe('test injectify with hash !helper&#x3D;../js/string!\n', 'is not failed');
     });
 
     it('work with es6 module definition without default export', function () {

@@ -1,22 +1,22 @@
 'use strict';
 
 var gulp = require('gulp'),
-    karma = require('karma').server;
+    Server = require('karma').Server;
 
 var watch = function (configPath, done) {
-    karma.start({
+    new Server({
         configFile: configPath,
         autoWatch: true,
         singleRun: false
-    }, done);
+    }, done).start();
 };
 
 var test = function (configPath, done) {
-    karma.start({
+    new Server({
         configFile: configPath,
         autoWatch: false,
         singleRun: true
-    }, done);
+    }, done).start();
 };
 
 gulp.task('karma:browserify', function (done) {
