@@ -96,3 +96,10 @@ Examples of usage
 
  * [Include helper](https://github.com/ftdebugger/injectify-include) - allow include templates like partials, but with browserify
  * [View helper](https://github.com/ftdebugger/injectify-view) - allow render marionette view direct to template
+
+Changelog
+---------
+
+### v2.2.0
+ 
+ * Handlebars 4.0 support
