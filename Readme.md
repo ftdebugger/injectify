@@ -26,19 +26,19 @@ browserify -t injectify main.js > bundle.js
 If you prefer `gulp`:
 
 ```js
-    var gulp = require("gulp"),
-        browserify = require("browserify"),
-        source = require("vinyl-source-stream"),
-        
-    gulp.task('js', function () {
-        var bundleStream = browserify('./src/main.js')
-            .transform(require("injectify"))
-            .bundle();
+var gulp = require("gulp"),
+    browserify = require("browserify"),
+    source = require("vinyl-source-stream"),
+    
+gulp.task('js', function () {
+    var bundleStream = browserify('./src/main.js')
+        .transform(require("injectify"))
+        .bundle();
 
-        return bundleStream
-            .pipe(source('main.js'))
-            .pipe(gulp.dest('dist'));
-    });
+    return bundleStream
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('dist'));
+});
 ```
 
 Use with webpack
