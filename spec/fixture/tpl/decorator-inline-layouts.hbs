@@ -1,0 +1,7 @@
+{{#*inline "layout"}}
+    <div>{{#> content}}{{/content}}</div>
+{{/inline}}
+
+{{#> layout}}
+    {{#*inline "content"}}{{require "../js/string"}}{{/inline}}
+{{/layout}}

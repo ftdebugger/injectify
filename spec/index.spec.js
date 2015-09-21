@@ -63,4 +63,19 @@ describe('injectify helper', function () {
         expect(template()).toBe('es6 version work\n');
     });
 
+    it('work with inline decorators', function () {
+        var template = require('./fixture/tpl/decorator-inline.hbs');
+        expect(template()).toBe('\nstring module');
+    });
+
+    it('work with inline decorators as argument of partial', function () {
+        var template = require('./fixture/tpl/decorator-inline-partial-argument.hbs');
+        expect(template()).toBe('\nstring module');
+    });
+
+    //it('work with inline decorators as layout inlines', function () {
+    //    var template = require('./fixture/tpl/decorator-inline-layouts.hbs');
+    //    expect(template()).toBe('\nstring module');
+    //});
+
 });
