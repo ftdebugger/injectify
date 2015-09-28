@@ -1,4 +1,4 @@
-Injectify [![Build Status](https://travis-ci.org/ftdebugger/injectify.svg?branch=master)](https://travis-ci.org/ftdebugger/injectify)
+Injectify [![Build Status](https://travis-ci.org/ftdebugger/injectify.svg?branch=master)](https://travis-ci.org/ftdebugger/injectify) ![npm downloads](https://img.shields.io/npm/dm/injectify.svg "npm downloads")
 =========
 
 Inspired by [hbsfy](https://github.com/epeli/node-hbsfy) and based on it source code.
