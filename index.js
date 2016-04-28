@@ -9,13 +9,16 @@ var requireSecondArgumentTransform = require('./lib/transform/requireSecondArgum
 
 /**
  * @param {string} data
+ * @param {{}} [options]
+ *
  * @returns {*}
  */
-var universalLoader = function (data) {
+var universalLoader = function (data, options) {
     if (this && this.cacheable) {
-        return webpackLoader.call(this, data);
+        var query = this.query.slice(1);
+        return webpackLoader.call(this, data, query ? JSON.parse(query) : {});
     } else {
-        return browserifyTransform.call(this, data);
+        return browserifyTransform.call(this, data, options._flags.injectify);
     }
 };
 

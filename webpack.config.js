@@ -12,7 +12,7 @@ module.exports = {
 
     module: {
         loaders: [
-            {test: /\.hbs/, loader: __dirname + '/index.js'}
+            {test: /\.hbs/, loader: __dirname + '/index.js?{"test": 1}'}
         ]
     }
 };
